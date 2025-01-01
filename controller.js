@@ -1,6 +1,6 @@
 import { fetchContentInfo } from "./fetch.js";
 import inquirer from "inquirer";
-import { addToDatabase, showWatchlist } from "./database.js";
+import { addToDatabase, showWatchlist, getFromDatabase, updateDatabase } from "./database.js";
 
 export const addAction = async (movieName) => {
   const response = await fetchContentInfo(movieName);
@@ -42,4 +42,10 @@ export const displayAndSelectMovie = async (response) => {
 
 export const showAction = async () => {
     showWatchlist();
+}
+
+export const updateAction = async (name) => {
+    const data = await getFromDatabase(name);
+    data.watched = true;
+    await updateDatabase(data.imdbID, data);
 }

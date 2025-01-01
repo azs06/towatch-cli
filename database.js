@@ -48,6 +48,7 @@ export const addToDatabase = async (data) => {
   }
 
   await db.read();
+  data.watched = false;
   db.data.movies.push(data);
   await db.write();
 
@@ -104,5 +105,5 @@ export const showWatchlist = async () => {
     return;
   }
 
-  console.table(movies, ["Title", "Year", "Type", "imdbID"]);
+  console.table(movies, ["Title", "Year", "Type", "imdbID", "watched"]);
 };

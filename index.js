@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander/esm.mjs";
-import { showAction, addAction } from "./controller.js";
+import { showAction, addAction, updateAction } from "./controller.js";
 import { initDatabase } from "./database.js";
 
 
@@ -25,5 +25,13 @@ program
     console.log("Listing all movies in the watchlist");
     showAction();
   });
+
+  program
+  .command("watched [name]")
+  .description("Update a movie in the watchlist")
+  .action((name) => {
+    console.log("Updating a movie in the watchlist");
+    updateAction(name);
+  });  
 
 program.parse();
