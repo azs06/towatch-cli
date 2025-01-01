@@ -1,18 +1,10 @@
 #!/usr/bin/env node
-import fs from "fs";
-import path from "path";
 import { Command } from "commander/esm.mjs";
-import { addToDatabase, showWatchlist, addAction } from "./controller.js";
-const STORAGE_PATH = "./storage";
+import { showAction, addAction } from "./controller.js";
+import { initDatabase } from "./database.js";
 
-// create database.json if not exists
-if (!fs.existsSync(STORAGE_PATH)) {
-  fs.mkdirSync(STORAGE_PATH);
-}
 
-if (!fs.existsSync(path.join(STORAGE_PATH, "database.json"))) {
-  fs.writeFileSync(path.join(STORAGE_PATH, "database.json"), "[]");
-}
+await initDatabase();
 
 const program = new Command();
 
@@ -31,7 +23,7 @@ program
   .description("list all movies in the watchlist")
   .action(() => {
     console.log("Listing all movies in the watchlist");
-    showWatchlist();
+    showAction();
   });
 
 program.parse();
