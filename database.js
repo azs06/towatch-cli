@@ -25,18 +25,6 @@ export const initDatabase = async () => {
   }
 };
 
-// Helper function to read the database
-export const readDatabase = async () => {
-  try {
-    await db.read(); // Reads the data from the file into `db.data`
-    db.data ||= { movies: [] }; // Ensure the data structure exists
-    return db.data;
-  } catch (error) {
-    console.error("Error reading database:", error);
-    return { movies: [] };
-  }
-};
-
 // Helper function to write to the database
 export const writeDatabase = async (data) => {
   try {
