@@ -1,0 +1,1 @@
+## A cli application keep track of things(movies, shows) to watch
